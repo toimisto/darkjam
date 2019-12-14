@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="OccluderPolygon2D" id=4]
+polygon = PoolVector2Array( 50.2095, 0.284744, 50.2095, 49.7025, -0.508713, 49.7025, -0.508713, 0.284744 )
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 25, 25 )
 
 [node name="Block" type="Node2D"]
@@ -19,6 +22,9 @@ margin_right = 50.0
 margin_bottom = 50.0
 color = Color( 0, 0, 0, 1 )
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D/ColorRect"]
+occluder = SubResource( 4 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 25, 25 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
