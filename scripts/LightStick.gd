@@ -23,6 +23,3 @@ func _ready():
     $ColorRect.color.g += 0.6 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
