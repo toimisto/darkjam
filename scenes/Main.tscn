@@ -10,6 +10,6 @@ script = ExtResource( 1 )
 LightStick = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 506.335, 193.71 )
+position = Vector2( 506.335, 195.07 )
 
 [node name="LevelGenerator" parent="." instance=ExtResource( 4 )]
