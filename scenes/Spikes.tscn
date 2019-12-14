@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="Spikes" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 15, 0 )
+constant_linear_velocity = Vector2( 15, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -15, 0, -10, -35, 0, -20, 10, -50, 15, -15, 20, -40, 25, -25, 30, -30, 35, 0 )
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+position = Vector2( -15, 0 )
+color = Color( 0.439216, 0.439216, 0.439216, 1 )
+polygon = PoolVector2Array( 0, 0, 5, -35, 15, -20, 25, -50, 30, -15, 35, -40, 40, -25, 45, -30, 50, 0 )
