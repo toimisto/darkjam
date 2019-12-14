@@ -1,12 +1,14 @@
 extends Node2D
-
+export (PackedScene) var LightStick
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    pass # Replace with function body.
+    var lightStick = LightStick.instance()
+    lightStick.position = $Player.position
+    add_child(lightStick)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

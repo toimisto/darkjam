@@ -43,17 +43,16 @@ cull_mode = 1
 polygon = PoolVector2Array( -16, -16, -16, 16, 16, 16, 16, -16, -16, -16 )
 
 [node name="Node2D" type="KinematicBody2D"]
-position = Vector2( 100, 300 )
+position = Vector2( 0, 300 )
 script = SubResource( 1 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.156863, 0.145098, 0.145098, 1 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( -15804.4, -5969.31 )
+position = Vector2( -22.4062, -50.7559 )
 scale = Vector2( 32.7052, 19.866 )
 texture = ExtResource( 1 )
-offset = Vector2( 500, 300 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 1.6, 1.6 )
@@ -73,4 +72,4 @@ light_mask = 1024
 current = true
 
 [node name="PlayerLight" parent="." instance=ExtResource( 3 )]
-rotation = 0.0
+position = Vector2( 5.07138, 3.68826 )
