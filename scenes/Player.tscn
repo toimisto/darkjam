@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/caster.png" type="Texture" id=1]
+[ext_resource path="res://assets/light.png" type="Texture" id=1]
+[ext_resource path="res://assets/caster.png" type="Texture" id=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends KinematicBody2D
@@ -42,12 +43,21 @@ polygon = PoolVector2Array( -15.9995, -15.8874, -15.9995, 15.8908, 15.9225, 15.8
 position = Vector2( 100, 300 )
 script = SubResource( 1 )
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.156863, 0.145098, 0.145098, 1 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( -3557.87, -1183.7 )
+scale = Vector2( 8.13497, 4.94301 )
+texture = ExtResource( 1 )
+offset = Vector2( 500, 300 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 1.6, 1.6 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite"]
 occluder = SubResource( 3 )
