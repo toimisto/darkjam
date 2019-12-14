@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/caster.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends KinematicBody2D
+
+export (int) var run_speed = 300
+export (int) var jump_speed = -800
+export (int) var gravity = 1500
+
+var velocity = Vector2()
+var jumping = false
+
+func get_input():
+    velocity.x = 0
+    var right = Input.is_action_pressed('right')
+    var left = Input.is_action_pressed('left')
+    var jump = Input.is_action_just_pressed('up')
+
+    if jump and is_on_floor():
+        jumping = true
+        velocity.y = jump_speed
+    if right:
+        velocity.x += run_speed
+    if left:
+        velocity.x -= run_speed
+
+func _physics_process(delta):
+    get_input()
+    velocity.y += gravity * delta
+    if jumping and is_on_floor():
+        jumping = false
+    velocity = move_and_slide(velocity, Vector2(0, -1))"
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Node2D" type="KinematicBody2D"]
+position = Vector2( 100, 300 )
+script = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 1.6, 1.6 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
