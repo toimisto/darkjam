@@ -38,7 +38,9 @@ func _physics_process(delta):
 [sub_resource type="RectangleShape2D" id=2]
 
 [sub_resource type="OccluderPolygon2D" id=3]
-polygon = PoolVector2Array( -15.9995, -15.8874, -15.9995, 15.8908, 15.9225, 15.8908, 15.9225, -15.8874 )
+closed = false
+cull_mode = 1
+polygon = PoolVector2Array( -16, -16, -16, 16, 16, 16, 16, -16, -16, -16 )
 
 [node name="Node2D" type="KinematicBody2D"]
 position = Vector2( 100, 300 )
@@ -58,15 +60,17 @@ scale = Vector2( 1.6, 1.6 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -2.46569, 0 )
-scale = Vector2( 0.845895, 1 )
+position = Vector2( 0.137664, 0 )
+scale = Vector2( 1.0086, 1 )
 texture = ExtResource( 2 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite"]
+light_mask = 1024
 occluder = SubResource( 3 )
+light_mask = 1024
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
 [node name="PlayerLight" parent="." instance=ExtResource( 3 )]
-position = Vector2( 12.0923, -0.401062 )
+rotation = 0.0

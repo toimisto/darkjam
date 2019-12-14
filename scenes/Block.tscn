@@ -2,7 +2,7 @@
 
 [sub_resource type="PhysicsMaterial" id=1]
 
-[sub_resource type="OccluderPolygon2D" id=4]
+[sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( 50.2095, 0.284744, 50.2095, 49.7025, -0.508713, 49.7025, -0.508713, 0.284744 )
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -23,7 +23,9 @@ margin_bottom = 50.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D/ColorRect"]
-occluder = SubResource( 4 )
+light_mask = 3
+occluder = SubResource( 2 )
+light_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 25, 25 )

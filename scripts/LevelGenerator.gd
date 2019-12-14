@@ -35,17 +35,17 @@ func add_block(this_col, h):
                     row += 1
         _:
             var b = 0
-            for i in range(5):
+            for i in range(4):
                 if prev[-(i-1)][-1] == "b":
                     b = max(prev[-(i-1)].size(), b)
                     print(prev[-(i-1)].size())
-            if h < b + 4:
+            if h < b + 2:
                 var block = Block.instance()
                 add_child(block)
                 block.position.y = row*50-h*50
                 block.position.x = col*50
                 this_col.push_back("b")
-                if h < b + 3:
+                if h < b + 2:
                     add_block(this_col, h+1)
                     
     if this_col[-1] == "":
