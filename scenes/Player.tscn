@@ -16,6 +16,7 @@ var velocity = Vector2()
 var jumping = false
 var direction = 1
 var aimrotation = 0
+var disablelight = 0
 
 
 func get_input():
@@ -50,7 +51,19 @@ func _physics_process(delta):
     if direction == 1:
         $Aim.rotation_degrees = aimrotation
     else:
-        $Aim.rotation_degrees = 180 + (-aimrotation)"
+        $Aim.rotation_degrees = 180 + (-aimrotation)
+
+func _process(delta):
+    if disablelight == 0:
+        $PlayerLight/Light2D.hide()
+        $Aim/Light2D.hide()
+    if disablelight < 50:
+        disablelight += 1
+    if disablelight >= 50 and disablelight < 1000:
+        $PlayerLight/Light2D.show()
+        $Aim/Light2D.show()
+        disablelight = 1000
+"
 
 [sub_resource type="RectangleShape2D" id=2]
 
