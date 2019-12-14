@@ -10,24 +10,13 @@ var row = 10
 var prev = []
 
 func add_block(this_col, h):
-    match randi()%4:
+    var next = randi()%6 - h
+    match next:
         0:
-            var b = 1000
-            for i in range(5):
-                if prev[-i][-1] == "b":
-                    b = min(h - prev[-i].size(), b)
-            if b < 5:
-                var block = Block.instance()
-                add_child(block)
-                block.position.y = row*50-h*50
-                block.position.x = col*50
-                this_col.push_back("b")
-                add_block(this_col, h+1)
-        1:
             if this_col[-1] == "b":
                 var s = 0
                 for i in range(4):
-                    if prev[-i][-1] == "s":
+                    if prev[-(i-1)][-1] == "s":
                         s += 1
                 if s != 4:
                     var spike = Spike.instance()
@@ -35,11 +24,30 @@ func add_block(this_col, h):
                     spike.position.y = row*50-h*50
                     spike.position.x = col*50
                     this_col.push_back("s")
-        2:
+        1:
             this_col.push_back("")
             add_block(this_col, h+1)
-        3:
-            pass
+        2:
+            if this_col.size() == 1:
+                if prev[-1].size() > 3:
+                    row -= 1
+                else:
+                    row += 1
+        _:
+            var b = 0
+            for i in range(5):
+                if prev[-(i-1)][-1] == "b":
+                    b = max(prev[-(i-1)].size(), b)
+                    print(prev[-(i-1)].size())
+            if h < b + 4:
+                var block = Block.instance()
+                add_child(block)
+                block.position.y = row*50-h*50
+                block.position.x = col*50
+                this_col.push_back("b")
+                if h < b + 3:
+                    add_block(this_col, h+1)
+                    
     if this_col[-1] == "":
         this_col.pop_back()
     return this_col
@@ -61,8 +69,8 @@ func make_col():
     col += 1
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-
+func _ready():
+    randomize()
     
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
