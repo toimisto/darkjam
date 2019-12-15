@@ -48,6 +48,7 @@ custom_colors/font_color = Color( 0.431373, 0.466667, 0.819608, 1 )
 text = "Move with Arrows/D-pad/WASD
 Jump with J/Space/A/X
 Throw LightSticks with K/Enter/B/O
+(You can hold it for longer throw)
 Reset with R/Start"
 
 [node name="Light2D" type="Light2D" parent="."]
