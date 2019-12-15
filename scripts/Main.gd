@@ -5,16 +5,20 @@ export (PackedScene) var LightStick
 # var b = "text"
 var throwtimer = 0
 var c = [0.0, randf(), 1.0]
+var meter = 0
+var sticks_left = 100
 
 
 func _ready():
     c.shuffle()
     $Player/PlayerLight/Light2D.color = Color(c[0],c[1],c[2],0.2)
     $Player/Aim/Light2D.color = Color(c[0],c[1],c[2],0.2)
+    $Ui/Meter.set("custom_colors/font_color", Color(c[0],c[1],c[2]))
     
 
 
 func throw_stick(speed, aimdir):
+    sticks_left -= 1
     var lightStick = LightStick.instance()
     lightStick.position = $Player.position
     lightStick.apply_impulse(Vector2(0,0), Vector2(cos(deg2rad(aimdir))*(speed+0.5)*400,sin(deg2rad(aimdir))*(speed+0.5)*400))
@@ -23,10 +27,18 @@ func throw_stick(speed, aimdir):
     c.shuffle()
     $Player/PlayerLight/Light2D.color = Color(c[0],c[1],c[2],0.2)
     $Player/Aim/Light2D.color = Color(c[0],c[1],c[2],0.2)
+    $Ui/Meter.set("custom_colors/font_color", Color(c[0],c[1],c[2]))
     $Player.disablelight = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+    meter = $Player.position.x / 50
+    $Ui/Meter.text = str(sticks_left) + " sticks left\n" + str(stepify(meter, 0.01)) + "m" 
+    
+    $Rave.volume_db = min((meter - 500)/500 * 80, 10)
+    $Rave.pitch_scale = min((500 - meter)/500, 1)
+    
+    
     if Input.is_action_pressed("throw"):
         if $Player.disablelight == 1000:
             throwtimer += delta

@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/LightStick.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/LevelGenerator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/Deerboy - Cave is Full of Bugs and Loot.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/Deerboy - Automatic Virtual Looting.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scenes/Ui.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,3 +16,15 @@ LightStick = ExtResource( 2 )
 position = Vector2( 506.335, 195.07 )
 
 [node name="LevelGenerator" parent="." instance=ExtResource( 4 )]
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="Rave" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -80.0
+pitch_scale = 0.01
+autoplay = true
+
+[node name="Ui" parent="." instance=ExtResource( 7 )]

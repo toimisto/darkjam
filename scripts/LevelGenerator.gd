@@ -1,6 +1,7 @@
 extends Node2D
 export(PackedScene) var Block
 export(PackedScene) var Spike
+export(PackedScene) var Bottom
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,7 +14,22 @@ func add_block(this_col, h):
     var next = randi()%6
     match next:
         0:
-            if this_col[-1] == "b":
+            if randi()% 500-col < 10:
+                if this_col[-1] == "b" and col > 20:
+                    var s = 0
+                    for i in range(4):
+                        if prev[-(i+1)][-1] == "s":
+                            s += 1
+                    if s != 4:
+                        var spike = Spike.instance()
+                        add_child(spike)
+                        spike.position.y = row*50-h*50
+                        spike.position.x = col*50
+                        this_col.push_back("s")
+            else:
+                add_block(this_col, h)
+        1:    
+            if this_col[-1] == "b" and col > 20:
                 var s = 0
                 for i in range(4):
                     if prev[-(i+1)][-1] == "s":
@@ -24,10 +40,10 @@ func add_block(this_col, h):
                     spike.position.y = row*50-h*50
                     spike.position.x = col*50
                     this_col.push_back("s")
-        1:
+        2:
             this_col.push_back("")
             add_block(this_col, h+1)
-        2:
+        3:
             if this_col.size() == 1:
                 if prev[-1].size() > 2 and prev[-1][-1] == "b":
                     row -= 1
@@ -58,6 +74,10 @@ func make_col():
     add_child(block)
     block.position.y = row*50
     block.position.x = col*50
+    var bottom = Bottom.instance()
+    add_child(bottom)
+    bottom.position.y = (row+1)*50
+    bottom.position.x = col*50
     
     if prev.size() > 10:
         this_col = add_block(this_col, 1)

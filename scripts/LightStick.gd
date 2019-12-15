@@ -23,3 +23,12 @@ func _ready():
     $ColorRect.color.g += 0.6 
 
 
+
+
+func _on_Node2D_body_entered(body):
+    if body.name == "BlockBody":
+        var vel =  get_linear_velocity()
+        if sqrt(vel.x*vel.x + vel.y*vel.y)/8 > 1:
+            $Crackling.volume_db = -40 + sqrt(vel.x*vel.x + vel.y*vel.y)/8
+            $Crackling.pitch_scale = randf()*4+2
+            $Crackling.play()

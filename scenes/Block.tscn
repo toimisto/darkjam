@@ -13,19 +13,19 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="BlockBody" type="StaticBody2D" parent="."]
 position = Vector2( 0, -50 )
 collision_layer = 3
 physics_material_override = SubResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+[node name="ColorRect" type="ColorRect" parent="BlockBody"]
 margin_right = 50.0
 margin_bottom = 50.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D/ColorRect"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BlockBody/ColorRect"]
 occluder = SubResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockBody"]
 position = Vector2( 25, 25 )
 shape = SubResource( 3 )

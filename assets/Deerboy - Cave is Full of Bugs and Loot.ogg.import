@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Deerboy - Cave is Full of Bugs and Loot.ogg-caed6dcbc62840c634dae235642b2831.oggstr"
+
+[deps]
+
+source_file="res://assets/Deerboy - Cave is Full of Bugs and Loot.ogg"
+dest_files=[ "res://.import/Deerboy - Cave is Full of Bugs and Loot.ogg-caed6dcbc62840c634dae235642b2831.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

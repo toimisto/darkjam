@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="Ui" type="CanvasLayer"]
+
+[node name="Meter" type="Label" parent="."]
+margin_left = 8.16223
+margin_top = 8.16226
+margin_right = 170.162
+margin_bottom = 55.1623
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "HALOJATA"

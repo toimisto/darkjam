@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/bg.png" type="Texture" id=1]
 [ext_resource path="res://assets/caster.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Aim.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/PlayerLight.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/crackling.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/land.wav" type="AudioStream" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends KinematicBody2D
@@ -17,7 +19,14 @@ var jumping = false
 var direction = 1
 var aimrotation = 0
 var disablelight = 0
+var landing = true
 
+
+func walksound():
+    if not $Land.playing:
+        $Land.volume_db = -20
+        $Land.pitch_scale = randf()+1
+        $Land.play()
 
 func get_input():
     velocity.x = 0
@@ -41,9 +50,19 @@ func get_input():
     if left:
         direction = -1
         velocity.x -= run_speed
+    if is_on_floor() and (left or right):
+        walksound()
+
 
 func _physics_process(delta):
     get_input()
+    if is_on_floor() and landing:
+        $Land.volume_db = -10
+        $Land.pitch_scale = randf()+1
+        $Land.play()
+        landing = false
+    if not is_on_floor():
+        landing = true
     velocity.y += gravity * delta
     if jumping and is_on_floor():
         jumping = false
@@ -58,7 +77,7 @@ func _physics_process(delta):
         if collision.collider.name == \"Spikes\":
             get_tree().reload_current_scene()
 
-func _process(delta):
+func _process(delta):       
     if disablelight == 0:
         $PlayerLight/Light2D.hide()
         $Aim/Light2D.hide()
@@ -68,6 +87,9 @@ func _process(delta):
         $PlayerLight/Light2D.show()
         $Aim/Light2D.show()
         disablelight = 1000
+        $Crackling.pitch_scale = randf()*5 +1
+        $Crackling.volume_db = randf()*5
+        $Crackling.play()
 "
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -101,9 +123,16 @@ light_mask = 1024
 occluder = SubResource( 3 )
 light_mask = 1024
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-
 [node name="Aim" parent="." instance=ExtResource( 3 )]
 
 [node name="PlayerLight" parent="." instance=ExtResource( 4 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Crackling" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Land" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -20.0
