@@ -20,9 +20,11 @@ position = Vector2( 0, 300 )
 script = ExtResource( 1 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0, 0, 0, 1 )
 
-[node name="Background" type="Sprite" parent="."]
+[node name="Background" type="Sprite" parent="CanvasModulate"]
+visible = false
 position = Vector2( -22.4062, -50.7559 )
 scale = Vector2( 32.7052, 19.866 )
 texture = ExtResource( 2 )

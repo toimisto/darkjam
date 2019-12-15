@@ -3,6 +3,7 @@ export(PackedScene) var Block
 export(PackedScene) var Spike
 export(PackedScene) var Bottom
 export(PackedScene) var Rave
+export(PackedScene) var Backdrop
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -86,12 +87,18 @@ func make_col():
 
     prev.push_back(this_col)
     if col == 500:
-        print("haloo")
         var rave = Rave.instance()
         add_child(rave)
         rave.position.y = row*50
         rave.position.x = col*50
         prev = []
+    var backdrop = Backdrop.instance()
+    backdrop.position.y = (row-2)*50 - randi()%500
+    backdrop.position.x = col*50 + randi()%50
+    add_child(backdrop)
+
+        
+        
     col += 1
 
 # Called when the node enters the scene tree for the first time.
