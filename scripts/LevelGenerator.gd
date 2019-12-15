@@ -92,12 +92,13 @@ func make_col():
         rave.position.y = row*50
         rave.position.x = col*50
         prev = []
-    var backdrop = Backdrop.instance()
-    backdrop.position.y = (row-2)*50 - randi()%500
-    backdrop.position.x = col*50 + randi()%50
-    add_child(backdrop)
-
         
+    if col % 5 == 0:
+        var backdrop = Backdrop.instance()
+        backdrop.position.y = (row-2)*50 - randi()%500
+        backdrop.position.x = col*50 + randi()%250
+        add_child(backdrop)
+            
         
     col += 1
 
