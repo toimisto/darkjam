@@ -8,6 +8,7 @@ var c = [0.0, randf(), 1.0]
 var meter = 0
 var win = false
 var death = 0
+var sticks = []
 
 
 func _ready():
@@ -27,6 +28,7 @@ func throw_stick(speed, aimdir, def):
         lightStick.stickcolor = Color(c[0],c[1],c[2],0.1)
         lightStick.def = def
         add_child(lightStick)
+        sticks.push_back(lightStick)
         c.shuffle()
         $Player/PlayerLight/Light2D.color = Color(c[0],c[1],c[2],0.2)
         $Player/Aim/Light2D.color = Color(c[0],c[1],c[2],0.2)
@@ -35,6 +37,9 @@ func throw_stick(speed, aimdir, def):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+    if delta > 0.018 and sticks.size() > 10:
+        sticks[0].queue_free()
+        sticks.pop_front()
     if death > 0:
         $Player.velocity = Vector2(0, 50)
         $Player.jump_speed = 0
