@@ -5,6 +5,7 @@ extends RigidBody2D
 # var b = "text"
 var start = true
 var stickcolor
+var def = 3
 
 func _integrate_forces(state):
     if start:
@@ -21,6 +22,11 @@ func _ready():
     $ColorRect.color.r += 0.6 
     $ColorRect.color.b += 0.6 
     $ColorRect.color.g += 0.6 
+    if def == 1:
+        $Lightonstick1.queue_free()
+        $Lightonstick3.queue_free()
+    elif def == 2:
+        $Lightonstick2.queue_free()
 
 
 
