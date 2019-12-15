@@ -29,6 +29,7 @@ func get_input():
     var up = Input.is_action_pressed('up')
     var down = Input.is_action_pressed('down')
     var jump = Input.is_action_just_pressed('jump')
+    var reset = Input.is_action_just_pressed('reset')
     
     if up and aimrotation > -90:
         aimrotation -= 1
@@ -46,6 +47,8 @@ func get_input():
         velocity.x -= run_speed
     if is_on_floor() and (left or right):
         walksound()
+    if reset:
+        get_tree().reload_current_scene()
 
 
 func _physics_process(delta):

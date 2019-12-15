@@ -40,7 +40,7 @@ func _process(delta):
         $Player.jump_speed = 0
         $Player.run_speed = 0
         death += 1
-    if death > 200:
+    if death > 150:
         get_tree().reload_current_scene()
     
     if meter > 500 and not win:
@@ -80,11 +80,11 @@ func _on_Player_take_damage():
         $Rave.stop()
         $Ui/Death.show()
         $Death.play()
-        $Hurt.queue_free()
-    var x = 100 - $Player.sticks_left
-    $Hurt.play()
-    for i in range(int(x*x/700-0.3*x+20)):
-        throw_stick(0.5, randi()%360, 1)
+    else:
+        var x = 100 - $Player.sticks_left
+        $Hurt.play()
+        for i in range(int(x*x/700-0.3*x+20)):
+            throw_stick(0.5, randi()%360, 1)
 
 
 func _on_timer_timeout():
