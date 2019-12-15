@@ -45,7 +45,7 @@ margin_right = -652.0
 margin_bottom = -1021.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.431373, 0.466667, 0.819608, 1 )
-text = "Move with Arrows/D-pad/WASD
+text = "Move and Aim with Arrows/D-pad/WASD
 Jump with J/Space/A/X
 Throw LightSticks with K/Enter/B/O
 (You can hold it for longer throw)

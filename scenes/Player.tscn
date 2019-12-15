@@ -25,7 +25,7 @@ scale = Vector2( 1.6, 1.6 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="Background" type="Sprite" parent="CanvasModulate2"]
-position = Vector2( -22.4062, -50.7559 )
+position = Vector2( -24.144, -50.2594 )
 scale = Vector2( 32.7052, 19.866 )
 z_index = -2
 z_as_relative = false
@@ -45,10 +45,17 @@ light_mask = 1024
 
 [node name="Aim" parent="." instance=ExtResource( 4 )]
 
-[node name="PlayerLight" parent="." instance=ExtResource( 5 )]
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Aim"]
+position = Vector2( 124, 0 )
 current = true
+smoothing_enabled = true
+smoothing_speed = 6.0
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.1
+
+[node name="PlayerLight" parent="." instance=ExtResource( 5 )]
 
 [node name="Crackling" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
