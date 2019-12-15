@@ -18,7 +18,7 @@ signal take_damage
 
 func walksound():
     if not $Land.playing:
-        $Land.volume_db = -20
+        $Land.volume_db = -30
         $Land.pitch_scale = randf()+1
         $Land.play()
 
@@ -51,7 +51,7 @@ func get_input():
 func _physics_process(delta):
     get_input()
     if is_on_floor() and landing:
-        $Land.volume_db = -10
+        $Land.volume_db = -20
         $Land.pitch_scale = randf()+1
         $Land.play()
         landing = false
@@ -86,12 +86,12 @@ func _process(delta):
             $Crackling.volume_db = randf()*5
             $Crackling.play()
         disablelight = 1000
-    if invincible < 100:
+    if invincible < 50:
         if invincible%2 == 0:
             $Sprite.hide()
         else:
             $Sprite.show()
         invincible += 1
-    elif invincible >= 100 and invincible < 1000:
+    elif invincible >= 50 and invincible < 1000:
         invincible = 1000
         

@@ -77,9 +77,13 @@ func _process(delta):
 func _on_Player_take_damage():
     if $Player.sticks_left <= 0 and death == 0:
         death = 1
+        $Rave.stop()
         $Ui/Death.show()
+        $Death.play()
+        $Hurt.queue_free()
     var x = 100 - $Player.sticks_left
-    for i in range(int(x*x/750-0.3*x+20)):
+    $Hurt.play()
+    for i in range(int(x*x/700-0.3*x+20)):
         throw_stick(0.5, randi()%360, 1)
 
 
