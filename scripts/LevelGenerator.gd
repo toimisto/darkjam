@@ -81,12 +81,12 @@ func make_col():
     bottom.position.y = (row+1)*50
     bottom.position.x = col*50
     
-    if prev.size() > 10:
+    if prev.size() > 7:
         this_col = add_block(this_col, 1)
         prev.pop_front()
 
     prev.push_back(this_col)
-    if col == 500:
+    if col == 475:
         var rave = Rave.instance()
         add_child(rave)
         rave.position.y = row*50

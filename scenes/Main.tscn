@@ -1,55 +1,90 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/LightStick.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/light.png" type="Texture" id=3]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/LevelGenerator.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/Deerboy - Cave is Full of Bugs and Loot.ogg" type="AudioStream" id=6]
-[ext_resource path="res://assets/Deerboy - Automatic Virtual Looting.ogg" type="AudioStream" id=7]
-[ext_resource path="res://scenes/Ui.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/hurt.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/death.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/CyberSloth.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/light.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/LevelGenerator.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/Deerboy - Cave is Full of Bugs and Loot.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/Deerboy - Automatic Virtual Looting.ogg" type="AudioStream" id=8]
+[ext_resource path="res://scenes/Ui.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/hurt.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/death.wav" type="AudioStream" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 41
+outline_size = 1
+outline_color = Color( 0.0705882, 0.976471, 0.596078, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+outline_size = 1
+outline_color = Color( 0.976471, 0.0705882, 0.941176, 1 )
+font_data = ExtResource( 3 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
 LightStick = ExtResource( 2 )
 
+[node name="Label" type="Label" parent="."]
+margin_left = -1138.0
+margin_top = -1231.0
+margin_right = -686.0
+margin_bottom = -1109.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.431373, 0.466667, 0.819608, 1 )
+text = "Hello, Welcome to a Cave,
+This way to the Rave >"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = -1102.0
+margin_top = -1138.0
+margin_right = -652.0
+margin_bottom = -1021.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.431373, 0.466667, 0.819608, 1 )
+text = "Move with Arrows/D-pad/WASD
+Jump with J/Space/A/X
+Throw LightSticks with K/Enter/B/O
+Reset with R/Start"
+
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( -1439.04, -2313.11 )
-scale = Vector2( 8.04904, 8.04904 )
-texture = ExtResource( 3 )
+position = Vector2( -1249.56, -1820.47 )
+scale = Vector2( 5.63616, 5.90261 )
+texture = ExtResource( 4 )
 color = Color( 1, 1, 1, 0.356863 )
 shadow_enabled = true
 shadow_buffer_size = 16000
 shadow_filter = 3
 shadow_filter_smooth = 8.4
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 506.335, 195.07 )
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1140.8, -1182.91 )
 
-[node name="LevelGenerator" parent="." instance=ExtResource( 5 )]
+[node name="LevelGenerator" parent="." instance=ExtResource( 6 )]
 
 [node name="Ambient" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
 autoplay = true
 
 [node name="Rave" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 volume_db = -80.0
 pitch_scale = 0.01
 autoplay = true
 
-[node name="Ui" parent="." instance=ExtResource( 8 )]
+[node name="Ui" parent="." instance=ExtResource( 9 )]
 
 [node name="timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
 [node name="Hurt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 [connection signal="take_damage" from="Player" to="." method="_on_Player_take_damage"]
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

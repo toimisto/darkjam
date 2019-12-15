@@ -53,11 +53,11 @@ func _process(delta):
         $timer.start()
         win = true
     
-    meter = $Player.position.x / 50
+    meter = $Player.position.x / 50 +25
     $Ui/Meter.text = str($Player.sticks_left) + " sticks left\n" + str(stepify(meter, 0.01)) + "m" 
     
-    $Rave.volume_db = min((meter - 500)/500 * 80, 10)
-    $Rave.pitch_scale = min(1-(meter - 500)/500, 1)
+    $Rave.volume_db = min((meter - 480)/480 * 80, 10)
+    $Rave.pitch_scale = min(1-(meter - 480)/480, 1)
     
     
     if Input.is_action_pressed("throw"):
