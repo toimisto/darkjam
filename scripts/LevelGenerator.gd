@@ -104,11 +104,13 @@ func make_col():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    for i in range(10):
-        var block = Block.instance()
-        add_child(block)
-        block.position.y = (row-i)*50
-        block.position.x = (col-1)*50
+    for i in range(50):
+        for j in range(6):
+            var block = Block.instance()
+            add_child(block)
+            block.position.y = (row+j-i*i/20)*50
+            block.position.x = (col-i)*50
+
     randomize()
     
 

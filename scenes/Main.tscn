@@ -1,44 +1,55 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/LightStick.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/LevelGenerator.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/Deerboy - Cave is Full of Bugs and Loot.ogg" type="AudioStream" id=5]
-[ext_resource path="res://assets/Deerboy - Automatic Virtual Looting.ogg" type="AudioStream" id=6]
-[ext_resource path="res://scenes/Ui.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/hurt.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/death.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/light.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/LevelGenerator.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/Deerboy - Cave is Full of Bugs and Loot.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/Deerboy - Automatic Virtual Looting.ogg" type="AudioStream" id=7]
+[ext_resource path="res://scenes/Ui.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/hurt.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/death.wav" type="AudioStream" id=10]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
 LightStick = ExtResource( 2 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -1439.04, -2313.11 )
+scale = Vector2( 8.04904, 8.04904 )
+texture = ExtResource( 3 )
+color = Color( 1, 1, 1, 0.356863 )
+shadow_enabled = true
+shadow_buffer_size = 16000
+shadow_filter = 3
+shadow_filter_smooth = 8.4
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 506.335, 195.07 )
 
-[node name="LevelGenerator" parent="." instance=ExtResource( 4 )]
+[node name="LevelGenerator" parent="." instance=ExtResource( 5 )]
 
 [node name="Ambient" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 6 )
 autoplay = true
 
 [node name="Rave" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
 volume_db = -80.0
 pitch_scale = 0.01
 autoplay = true
 
-[node name="Ui" parent="." instance=ExtResource( 7 )]
+[node name="Ui" parent="." instance=ExtResource( 8 )]
 
 [node name="timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
 [node name="Hurt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 [connection signal="take_damage" from="Player" to="." method="_on_Player_take_damage"]
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
