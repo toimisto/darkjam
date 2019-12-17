@@ -6,10 +6,11 @@ extends RigidBody2D
 var start = true
 var stickcolor
 var def = 3
+var sleep = 0
 
 func _integrate_forces(state):
     if start:
-        apply_torque_impulse((randf()-0.5)*1000)
+        apply_torque_impulse((randf()-0.5)*50)
         start == false
 
 # Called when the node enters the scene tree for the first time.
@@ -28,13 +29,13 @@ func _ready():
     elif def == 2:
         $Lightonstick2.queue_free()
 
-
+    
 
 
 func _on_Node2D_body_entered(body):
     if body.name == "BlockBody":
-        var vel =  get_linear_velocity()
-        if sqrt(vel.x*vel.x + vel.y*vel.y)/8 > 1:
-            $Crackling.volume_db = -40 + sqrt(vel.x*vel.x + vel.y*vel.y)/8
+        var vel = get_linear_velocity()
+        if sqrt(vel.x*vel.x + vel.y*vel.y) > 10:
+            $Crackling.volume_db = -50 + (20* log(min(300, sqrt(vel.x*vel.x + vel.y*vel.y)))/log(10))
             $Crackling.pitch_scale = randf()*4+2
             $Crackling.play()

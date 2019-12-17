@@ -3,6 +3,7 @@
 [sub_resource type="PhysicsMaterial" id=1]
 
 [sub_resource type="OccluderPolygon2D" id=2]
+cull_mode = 2
 polygon = PoolVector2Array( 50, 0, 50, 50, 0, 50, 0, 0 )
 
 [sub_resource type="RectangleShape2D" id=3]

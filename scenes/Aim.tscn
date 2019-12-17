@@ -5,6 +5,7 @@
 [node name="Aim" type="Node2D"]
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 texture = ExtResource( 1 )
 texture_scale = 0.3
 color = Color( 1, 1, 1, 0.235294 )

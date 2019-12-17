@@ -25,6 +25,7 @@ outline_color = Color( 0.976471, 0.0705882, 0.941176, 1 )
 font_data = ExtResource( 3 )
 
 [node name="Main" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 1 )
 LightStick = ExtResource( 2 )
 
@@ -62,6 +63,7 @@ shadow_filter = 3
 shadow_filter_smooth = 8.4
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
+pause_mode = 1
 position = Vector2( -1140.8, -1182.91 )
 
 [node name="LevelGenerator" parent="." instance=ExtResource( 6 )]
@@ -72,13 +74,12 @@ autoplay = true
 
 [node name="Rave" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -80.0
-pitch_scale = 0.01
 autoplay = true
+bus = "Music"
 
 [node name="Ui" parent="." instance=ExtResource( 9 )]
 
-[node name="timer" type="Timer" parent="."]
+[node name="Winshow" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
@@ -87,5 +88,19 @@ stream = ExtResource( 10 )
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+
+[node name="Throw" type="Timer" parent="."]
+one_shot = true
+
+[node name="ThrowCooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="DeathTime" type="Timer" parent="."]
+wait_time = 5.0
 [connection signal="take_damage" from="Player" to="." method="_on_Player_take_damage"]
-[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Winshow" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Throw" to="." method="_on_Throw_timeout"]
+[connection signal="timeout" from="ThrowCooldown" to="Player" method="_on_ThrowCooldown_timeout"]
+[connection signal="timeout" from="DeathTime" to="." method="_on_DeathTime_timeout"]

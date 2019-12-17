@@ -18,6 +18,7 @@ polygon = PoolVector2Array( -13, -13, -13, 13, 13, 13, 13, -13, -13, -13 )
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 300 )
 script = ExtResource( 1 )
+jump_speed = -600
 
 [node name="CanvasModulate2" type="CanvasModulate" parent="."]
 position = Vector2( 810.136, 312.112 )
@@ -63,3 +64,7 @@ stream = ExtResource( 6 )
 [node name="Land" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -20.0
+
+[node name="Invincible" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

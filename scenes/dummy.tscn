@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="Block" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = -50.0
+margin_right = 50.0
+color = Color( 0.705882, 0.705882, 0.705882, 1 )

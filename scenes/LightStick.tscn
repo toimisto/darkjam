@@ -5,20 +5,17 @@
 [ext_resource path="res://assets/crackling.ogg" type="AudioStream" id=3]
 
 [sub_resource type="PhysicsMaterial" id=1]
-rough = true
 bounce = 0.3
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 1.83182
 height = 6.00534
 
-[node name="Node2D" type="RigidBody2D"]
+[node name="LightStick" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 2
-mass = 10.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 5.0
-continuous_cd = 1
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )
@@ -39,8 +36,9 @@ scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 2 )
 color = Color( 1, 1, 1, 0.0705882 )
 shadow_enabled = true
+shadow_buffer_size = 512
 shadow_gradient_length = 1.4
-shadow_filter = 3
+shadow_filter = 1
 shadow_filter_smooth = 5.3
 
 [node name="Lightonstick2" type="Light2D" parent="."]
@@ -48,8 +46,9 @@ scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 2 )
 color = Color( 1, 1, 1, 0.0705882 )
 shadow_enabled = true
+shadow_buffer_size = 512
 shadow_gradient_length = 1.4
-shadow_filter = 3
+shadow_filter = 1
 shadow_filter_smooth = 5.3
 
 [node name="Lightonstick3" type="Light2D" parent="."]
@@ -58,10 +57,12 @@ scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 2 )
 color = Color( 1, 1, 1, 0.0705882 )
 shadow_enabled = true
+shadow_buffer_size = 512
 shadow_gradient_length = 1.4
-shadow_filter = 3
+shadow_filter = 1
 shadow_filter_smooth = 5.3
 
-[node name="Crackling" type="AudioStreamPlayer" parent="."]
+[node name="Crackling" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+attenuation = 1.8025
 [connection signal="body_entered" from="." to="." method="_on_Node2D_body_entered"]
