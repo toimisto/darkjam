@@ -38,13 +38,13 @@ func get_input():
         jumping = true
         velocity.y = jump_speed
     if jumping and air:
-        velocity.y -= 16 * abs(velocity.y/jump_speed)
+        velocity.y -= 16 * abs(velocity.y/jump_speed) # make player float a bit when button hold
     if right:
         direction = 1
-        velocity.x += min(velocity.x + run_speed*0.7,run_speed)
+        velocity.x += min(velocity.x + run_speed*0.7,run_speed) #small acceleration
     if left:
         direction = -1
-        velocity.x -= min(abs(velocity.x) + run_speed*0.7,run_speed)
+        velocity.x -= min(abs(velocity.x) + run_speed*0.7,run_speed) #small acceleration
     if is_on_floor() and (left or right):
         walksound()
 
